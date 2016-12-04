@@ -1,0 +1,59 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+/**
+`ResettablePropertiesBehavior` lets you easily reset polymer element properties to their default values.
+
+To reset `Object` and `Array` types `ResettablePropertiesBehavior` require properties that use this behavior to have a function as their value.
+
+Set `resettable` to true for properties to reset them with `resetProperties`.
+
+    data: {
+      type: Array,
+      resettable: true,
+      value: function() {
+        return [];
+      }
+    }
+
+Optionally set `resetGroups` to only reset a subset of resettable properties with `resetPropertyGroup(group)`.
+
+    data: {
+      type: Array,
+      resettable: true,
+      resetGroups: ['group-name'],
+      value: function() {
+        return [];
+      }
+    }
+
+@polymerBehavior ResettablePropertiesBehavior
+@demo demo/index.html
+**/
+  ResettablePropertiesBehavior = {
+    _resetProperties: function(group) {
+      for (var propertyName in this.properties) {
+        var property = this.properties[propertyName];
+        if (property.resettable) {
+          if (!group || (property.resetGroups && property.resetGroups.indexOf(group) > -1)) {
+            this.set(propertyName, property.value());
+          }
+        }
+      }
+    },
+
+    /* Resets all resettable properties.
+    */
+    resetProperties: function() {
+      this._resetProperties();
+    },
+
+    /* Resets all resettable properties that have `group` in their `resetGroups`.
+    */
+    resetPropertyGroup: function(group) {
+      if (group.length) {
+        this._resetProperties(group);
+      }
+    }
+  }
+</script>

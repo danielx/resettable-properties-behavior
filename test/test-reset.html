@@ -1,0 +1,74 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../resettable-properties-behavior.html">
+
+<dom-module id="test-reset">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'test-reset',
+
+      behaviors: [
+        ResettablePropertiesBehavior
+      ],
+
+      properties: {
+        stringProperty: {
+          type: String,
+          resettable: true,
+          resetGroups: ['string-group'],
+          value: function() {
+            return 'foobar';
+          },
+        },
+
+        booleanProperty: {
+          type: Boolean,
+          resettable: true,
+          value: function() {
+            return false;
+          },
+        },
+
+        numberProperty: {
+          type: Number,
+          resettable: true,
+          value: function() {
+            return 1;
+          },
+        },
+
+        arrayProperty: {
+          type: Array,
+          resettable: true,
+          value: function() {
+            return [];
+          },
+        },
+
+        objectProperty: {
+          type: Object,
+          resettable: true,
+          value: function() {
+            return {};
+          },
+        },
+
+        dateProperty: {
+          type: Date,
+          resettable: true,
+          value: function() {
+            return new Date('1970-01-01');
+          },
+        }
+      }
+
+    });
+  </script>
+</dom-module>

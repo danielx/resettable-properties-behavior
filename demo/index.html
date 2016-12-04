@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>resettable-properties-behavior demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../resettable-properties-behavior.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic resettable-properties-behavior demo</h3>
+      <demo-snippet>
+        <template>
+
+          <my-element form-title="Nice form" given-name="John" family-name="Doe"></my-element>
+
+          <dom-module id="my-element">
+            <template>
+              <style media="screen">
+                div.field {
+                  margin: 8px;
+                }
+              </style>
+              <form>
+                <h1>[[formTitle]]</h1>
+                <div class="field">
+                  <label for="givenName">Given Name</label>
+                  <input type="text" name="givenName" value="{{givenName::input}}">
+                </div>
+
+                <div class="field">
+                  <label for="familyName">Family Name</label>
+                  <input type="text" name="familyName" value="{{familyName::input}}">
+                </div>
+
+                <input type="button" name="" value="clear form inputs" on-tap="resetProperties">
+              </form>
+
+            </template>
+            <script>
+              Polymer({
+                is: 'my-element',
+
+                behaviors: [
+                  ResettablePropertiesBehavior
+                ],
+
+                properties: {
+                  formTitle: {
+                    type: String,
+                    value: 'My Form'
+                  },
+
+                  givenName: {
+                    type: String,
+                    notify: true,
+                    resettable: true,
+                    value: function() {
+                      return '';
+                    }
+                  },
+
+                  familyName: {
+                    type: String,
+                    notify: true,
+                    resettable: true,
+                    value: function() {
+                      return '';
+                    }
+                  }
+                },
+              });
+            </script>
+          </dom-module>
+
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>
