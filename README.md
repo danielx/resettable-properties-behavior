@@ -1,3 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg?style=flat-square)](https://beta.webcomponents.org/element/danielx/resettable-properties-behavior)
+
 # ResettablePropertiesBehavior
 
 `ResettablePropertiesBehavior` lets you easily reset polymer element properties to their default values.
