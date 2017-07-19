@@ -3,7 +3,7 @@
   "description": "lets you easily reset polymer element properties to their default values.",
   "main": "resettable-properties-behavior.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0"
+    "polymer": "Polymer/polymer#1 - 2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
